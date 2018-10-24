@@ -1,0 +1,6 @@
+.history/
+
+*.lock
+*.log
+
+node_modules/
