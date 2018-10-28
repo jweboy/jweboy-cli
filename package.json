@@ -1,6 +1,6 @@
 {
   "name": "jweboy-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "bin": {
     "jweboy-cli": "bin/jweboy.js"
@@ -12,11 +12,12 @@
   "author": {
     "name": "jweboy",
     "email": "jweboy0630@gmail.com"
-  },  
+  },
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.15.1",
     "cross-spawn": "^6.0.5",
+    "inquirer": "^6.2.0",
     "ora": "^2.1.0"
   }
 }
