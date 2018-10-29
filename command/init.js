@@ -28,10 +28,14 @@ module.exports = async function (appName) {
         await exec(gitCmd)
         spinner.stop()
         console.log(`Success! Created ${appName} at ${appFullPath}\n`)
-        const pkgCmd = spawn(pkgMgr, ['install'], {
+        // 排除windows的怪胎行为
+        const isWin = /^win/.test(process.platform)
+
+        const pkgCmd = spawn(`${pkgMgr}${isWin && '.cmd'}`, ['install'], {
           stdio: 'inherit',
           cwd: appFullPath
         })
+      
         pkgCmd.on('close', () => {
           console.log(chalk.cyan('\nAll packages have been installed.\n'))
           console.log(`Now you can ${chalk.cyan(`cd ${appFullPath}`)} and ${chalk.cyan(`${pkgMgr} start`)}.\n`) 
