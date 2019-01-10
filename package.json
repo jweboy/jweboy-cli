@@ -1,6 +1,6 @@
 {
   "name": "jweboy-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "bin": {
     "jweboy-cli": "bin/jweboy.js"
@@ -9,6 +9,12 @@
     "type": "git",
     "url": "https://github.com/jweboy/jweboy-cli.git"
   },
+  "keywords": [
+    "react",
+    "webpack",
+    "eslint",
+    "prettier"
+  ],
   "author": {
     "name": "jweboy",
     "email": "jweboy0630@gmail.com"

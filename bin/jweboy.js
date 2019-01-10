@@ -9,8 +9,8 @@ program
   .usage('<command> [option]')
 
 program
-  .command('init <project-name>')
-  .description('generate a react-webpack-template  from remote github.')
+  .command('init')
+  .description('Generate a template  from remote github.')
   .action(init)
 
 // 这句是关键,用来将Program写入到命令行
