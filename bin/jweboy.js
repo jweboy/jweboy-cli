@@ -1,22 +1,18 @@
 #!/usr/bin/env node
 
-const program = require('commander')
-const init = require('../command/init')
-const version = require('../package').version
+const program = require('commander');
+const init = require('../command/init');
+const version = require('../package.json').version;
+const convertSVGToImage = require('../package/svg-to-image');
 
 program
-  .version(version)
+  .version(version, '-v, --version')
   .usage('<command> [option]')
+  .option('init', 'Generate a template  from remote github.', init)
+  .option('-s, --sharp', 'Covert svg to png', convertSVGToImage)
+  .parse(process.argv); // 将Program写入到命令行
 
-program
-  .command('init')
-  .description('Generate a template  from remote github.')
-  .action(init)
 
-// 这句是关键,用来将Program写入到命令行
-program.parse(process.argv)
-
-// 不带任何参数的默认命令会显示help信息
-if(!program.args.length) {
-  program.help()
-}
+// process.on('unhandledRejection', (err) => {
+//   throw err;
+// });

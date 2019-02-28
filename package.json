@@ -1,6 +1,6 @@
 {
   "name": "jweboy-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "bin": {
     "jweboy-cli": "bin/jweboy.js"
