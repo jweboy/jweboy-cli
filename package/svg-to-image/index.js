@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { promisify } = require('util');
 const path = require('path');
+// TODO: sharp 安装很慢的问题
 const sharp  = require('sharp');
 
 const userDir = process.cwd();
