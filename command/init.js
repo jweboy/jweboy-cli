@@ -3,7 +3,7 @@ const path = require('path')
 const ora = require('ora')
 const chalk = require('chalk')
 const { spawn, execSync } = require('child_process');
-const isWindows = require('../utils/platform');
+const { isWindows } = require('../utils/platform');
 const questions = require('./prompt');
 
 module.exports = async function () {
@@ -25,8 +25,8 @@ module.exports = async function () {
         console.log('\n');
         spinner.succeed(`Success! Created ${appFullPath}\n`);
         
-        const pkgCmd = `${packageManager}${isWindows && '.cmd'}`;
-
+        const pkgCmd = `${packageManager}${isWindows ? '.cmd' : ''}`;
+        
         const childProcess = spawn(pkgCmd, ['install'], {
           stdio: 'inherit',
           cwd: appFullPath,
