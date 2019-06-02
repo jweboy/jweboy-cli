@@ -26,6 +26,7 @@
     "gm": "^1.23.1",
     "inquirer": "^6.2.0",
     "nodegit": "^0.24.3",
+    "optimist": "^0.6.1",
     "ora": "^2.1.0"
   },
   "devDependencies": {

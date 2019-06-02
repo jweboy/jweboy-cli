@@ -8,7 +8,7 @@ const donwloadGithubFiles = require("../../utils/download-github-files");
 
 const statAsync = util.promisify(fs.stat);
 
-module.exports = async function initReactWepackByTempalte() {
+module.exports = async function initTempalte() {
   const { projectName, tempalteName, packageManager } = await inquirer.prompt(
     questions
   );

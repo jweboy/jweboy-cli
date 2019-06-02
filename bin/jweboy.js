@@ -9,8 +9,8 @@ const convertImage = require("../package/convert-image");
 program
   .version(version, "-v, --version")
   .usage("<command> [option]")
-  .option("init", "Generate a template from remote github.", initTemplate)
-  .option("convert, -c", "Covert svg to png", convertImage)
+  .option("-i, --init", "Generate a template from remote github.", initTemplate)
+  .option("-c, --convert", "Covert svg to png", convertImage)
   // .option("-d, --deploy", "Deploy project to tencent server", deploy)
   .parse(process.argv); // 将Program写入到命令行
 
