@@ -1,49 +1,30 @@
-const fs = require('fs');
-const path = require('path');
-const { spawn } = require('child_process');
-const chalk = require('chalk');
-const { rootPath } = require('../../utils/path');
+const inquirer = require("inquirer");
+const util = require("util");
+const fs = require("fs");
+const path = require("path");
+const questions = require("../../prompt/deploy");
 
-const outRootDir = '/Users/jianglei/LearnNginx/nginx-docker-demo';
-const outStaticDir = path.join(outRootDir, 'html');
+const DOCKERFILE = "Dockerfile";
+const statAsync = util.promisify(fs.stat);
 
-/**
- * 拷贝指定目录的所有文件至 nginx 的 html 目录中
- */
-function recursiveCopyDirs() {
-    const copy = spawn('cp', ['-r', rootPath, outStaticDir]);
+async function deployProjectToServer() {
+  // 前置条件 检查 Dockerfile 是否存在
+  const rootPath = process.cwd();
+  const names = fs.readdirSync(rootPath);
+  if (!names.includes(DOCKERFILE)) {
+    return console.log("Missing Dockerfile.");
+  }
 
-    copy.stderr.on('data', (data) => {
-        console.log(chalk.red(`copy stderr => ${data}`));
-        process.exit(0);
-    });
+  const dockerFilePath = path.join(rootPath, DOCKERFILE);
+  const stat = await statAsync(dockerFilePath);
+  if (!stat.isFile()) {
+    return console.log("Dockerfile is not a file.");
+  }
 
-    copy.on('exit', () => {
-        console.log(chalk.green('File copy completed.'));
-    });
+  return inquirer.prompt(questions).then(data => {
+    const { imageName } = data;
+    console.log(imageName);
+  });
 }
 
-/**
- * 将 nginx 镜像重新打包部署到服务器并更新对应容器
- */
-function deployToServer() {
-    const shell = spawn('sh', ['build.sh'], { cwd: outRootDir });
-
-    shell.stdout.on('data', (data) => {
-        console.log(`${data}`);
-    });
-
-    shell.stderr.on('data', (data) => {
-        console.log(chalk.red(`shell stderr => ${data}`));
-        process.exit(0);
-    });
-
-    shell.on('exit', () => {
-        console.log(chalk.cyan('Docker deploy completed.'));
-    });
-}
-
-module.exports = function main() {
-    recursiveCopyDirs();
-    deployToServer();
-}
+module.exports = deployProjectToServer;
