@@ -1,32 +1,30 @@
-const fs = require('fs');
+// @ts-nocheck
+const fs = require('fs').promises;
 const path = require('path');
-const util = require('util');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
-const questions = require('../../prompt/prompt');
+const questions = require('../../prompt/template');
 const donwloadGithubFiles = require('../../utils/download-github-files');
 
-const statAsync = util.promisify(fs.stat);
-
 module.exports = async function initTempalte() {
-  const { projectName, tempalteName, packageManager } = await inquirer.prompt(questions);
+  const result = await inquirer.prompt(questions);
+  const { projectName, templateName, packageManager } = result;
 
-  // 项目名为空则使用默认名称
-  const appName = projectName || tempalteName;
+  // 项目名为空则使用默认模版名称
+  const appName = projectName || templateName;
   const appPath = path.resolve(appName);
-  const appFullPath = path.resolve(appPath);
 
   try {
-    const stat = await statAsync(appFullPath);
+    const stat = await fs.stat(appPath);
     if (stat.isDirectory()) {
-      console.log(chalk.red('Current directory already exists.\n'));
-      console.log(chalk.red('Either try using a new directory name, or remove the files listed above.'));
+      console.log(chalk.red('当前路径中存在同名目录\n'));
+      console.log(chalk.red('请重新命名目录名称或者删除同名目录'));
     }
   } catch (err) {
     donwloadGithubFiles({
-      tempalteName,
+      templateName,
       projectName,
-      appFullPath,
+      appPath,
       packageManager,
     });
   }

@@ -20,10 +20,12 @@
     "email": "jweboy0630@gmail.com"
   },
   "dependencies": {
+    "chalk": "^3.0.0",
     "commander": "^3.0.2",
     "cross-spawn": "^7.0.1",
+    "nodegit": "^0.26.2",
     "optimist": "^0.6.1",
-    "ora": "^4.0.2"
+    "ora": "^4.0.3"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
