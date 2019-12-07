@@ -1,3 +1,3 @@
 module.exports = {
-  isWindows: /^win/.test(process.platform)
+  isWindows: /^win/.test(process.platform),
 };

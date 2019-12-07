@@ -1,3 +1,9 @@
+/*
+ * @Author: jweboy
+ * @Date: 2019-12-06 11:16:20
+ * @LastEditors: jweboy
+ * @LastEditTime: 2019-12-06 18:34:55
+ */
 // @ts-nocheck
 const fs = require('fs').promises;
 const path = require('path');
@@ -8,7 +14,7 @@ const donwloadGithubFiles = require('../../utils/download-github-files');
 
 module.exports = async function initTempalte() {
   const result = await inquirer.prompt(questions);
-  const { projectName, templateName, packageManager } = result;
+  const { projectName, templateName, packageManager, ruleType } = result;
 
   // 项目名为空则使用默认模版名称
   const appName = projectName || templateName;
@@ -26,6 +32,7 @@ module.exports = async function initTempalte() {
       projectName,
       appPath,
       packageManager,
+      ruleType,
     });
   }
 };
