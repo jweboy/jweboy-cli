@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-12-06 18:40:26
  */
 // @ts-nocheck
-const { Clone } = require('nodegit');
-const { spawn } = require('child_process');
+// const { Clone } = require('nodegit');
+const { spawn, execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const ora = require('ora');
@@ -53,11 +53,9 @@ async function handleRuleFiles(type, projectName, rootPath) {
   }
 }
 
-async function handleCurrentTypeDeps({ ruleType, packageManager, pkgCmd, projectName, appPath }) {
+async function handleCurrentTypeDeps({ ruleType, packageManager, pkgCmd, appPath }) {
   const isNpm = packageManager === NPM;
   const action = isNpm ? 'install' : 'add';
-
-  console.log(appPath)
 
   const pkgs = templateConfig[`${ruleType}Deps`];
   const installProcess = spawn(pkgCmd, [action, ...pkgs, '-D'], {
@@ -81,8 +79,10 @@ async function donwloadGithubFiles({ templateName, projectName, appPath, package
   try {
     spinner = ora().start(`正在创建新项目！当前路径是 ${chalk.green(appPath)}`);
 
+    const downloadProcess = execSync(`git clone ${GITHUB_URL}/${templateName} --depth=1 ${appPath}`);
+
     // 下载模板文件
-    await Clone.clone(`${GITHUB_URL}/${templateName}`, appPath);
+    // await Clone.clone(`${GITHUB_URL}/${templateName}`, appPath);
 
     spinner.stop();
     spinner.succeed(`目录创建成功! 当前路径为${chalk.green(`${appPath}\n`)}`);
@@ -109,7 +109,7 @@ async function donwloadGithubFiles({ templateName, projectName, appPath, package
 
 // donwloadGithubFiles({
 //   templateName: PROJECT_STARTER,
-//   appPath: '/Users/sl/GithubProjects/jweboy-cli/project-starter',
+//   appPath: '/Users/jianglei/GithubProjects/jweboy-cli/project-starter',
 //   packageManager: 'yarn',
 //   projectName: 'eeee',
 //   ruleType: 'js',
