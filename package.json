@@ -1,7 +1,8 @@
 {
   "name": "jweboy-cli",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "license": "MIT",
+  "private": true,
   "bin": {
     "jweboy-cli": "bin/jweboy.js"
   },
@@ -19,15 +20,12 @@
     "name": "jweboy",
     "email": "jweboy0630@gmail.com"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
-    "chalk": "^3.0.0",
     "commander": "^3.0.2",
-    "cross-spawn": "^7.0.1",
-    "global": "^4.4.0",
-    "inquirer": "^7.0.0",
-    "jweboy-ssh-client": "^0.0.4",
-    "optimist": "^0.6.1",
-    "ora": "^4.0.3"
+    "cross-spawn": "^7.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
