@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const sshClient = require('jweboy-ssh-client');
 const dotenv = require('dotenv');
 const yargs = require('yargs');
-const { rootPath } = require('../../config/paths');
+const { rootPath } = require('../../../config/paths');
 
 const fsPromises = fs.promises;
 const { argv } = yargs;
