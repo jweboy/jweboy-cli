@@ -5,18 +5,19 @@
  * @LastEditTime: 2019-12-06 18:40:26
  */
 // @ts-nocheck
-// const { Clone } = require('nodegit');
-const { spawn, execSync } = require('child_process');
+const { spawn, exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const util = require('util');
 const ora = require('ora');
 const chalk = require('chalk');
 const { isWindows } = require('./platform');
-const { GITHUB_URL, WINDOWS_PACKAGE_MANAGER_SUFFIX, PROJECT_STARTER, NPM } = require('../contants/tempalte');
+const { GITHUB_URL, WINDOWS_PACKAGE_MANAGER_SUFFIX, NPM } = require('../contants/tempalte');
 const templateConfig = require('../config/template');
 
 let spinner;
 const fsPromises = fs.promises;
+const execAsync = util.promisify(exec);
 
 function startInstallProcess(packageManager, projectName, appPath) {
   return new Promise((resolve) => {
@@ -28,7 +29,7 @@ function startInstallProcess(packageManager, projectName, appPath) {
 
     installProcess.on('close', () => {
       console.log(chalk.cyan('\n依赖包全部安装成功！\n'));
-      console.log(`现在你可以 ${chalk.cyan(`cd ${projectName}`)} 开始尽情的工作啦！\n`);
+      console.log(`现在你可以 ${chalk.cyan(`cd ${appPath}`)} 开始尽情的工作啦！\n`);
       console.log(chalk.cyan('Enjoy coding.✌\n'));
       resolve();
     });
@@ -64,7 +65,7 @@ async function handleCurrentTypeDeps({ ruleType, packageManager, pkgCmd, appPath
   });
 
   installProcess.on('close', () => {
-    console.log(chalk.cyan(`\n ${ruleType}相关的规范依赖包全部安装成功!`));
+    console.log(chalk.cyan(`\n ✌${ruleType}相关的规范依赖包全部安装成功!`));
   });
 }
 
@@ -79,13 +80,11 @@ async function donwloadGithubFiles({ templateName, projectName, appPath, package
   try {
     spinner = ora().start(`正在创建新项目！当前路径是 ${chalk.green(appPath)}`);
 
-    const downloadProcess = execSync(`git clone ${GITHUB_URL}/${templateName} --depth=1 ${appPath}`);
-
     // 下载模板文件
-    // await Clone.clone(`${GITHUB_URL}/${templateName}`, appPath);
+    await execAsync(`git clone ${GITHUB_URL}/${templateName} --depth=1 ${appPath}`);
 
-    spinner.stop();
-    spinner.succeed(`目录创建成功! 当前路径为${chalk.green(`${appPath}\n`)}`);
+    await spinner.stop();
+    await spinner.succeed(`目录创建成功! 当前路径为${chalk.green(`${appPath}\n`)}`);
     console.log(`执行安装依赖包 ${chalk.cyan(`${packageManager} install`)}，需要等一会儿...\n`);
 
     const pkgCmd = `${packageManager}${isWindows ? WINDOWS_PACKAGE_MANAGER_SUFFIX : ''}`;
