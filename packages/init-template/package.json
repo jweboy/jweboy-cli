@@ -27,6 +27,7 @@
     "url": "https://github.com/jweboy/jweboy-cli/issues"
   },
   "dependencies": {
+    "jweboy-ssh-client": "^0.0.5",
     "ora": "^4.0.3"
   }
 }

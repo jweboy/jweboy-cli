@@ -42,4 +42,4 @@ $ lerna clean 删除所有 `package` 的依赖模块
 
 ## TODO
 
-- lerna 增加 workspace 配置
+- lerna 增加 workspace 配置(搭建个人 npm 仓库)
