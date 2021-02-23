@@ -1,8 +1,9 @@
-.history/
-
 *.lock
 *.log
 
 node_modules/
 
 packages/**/node_modules/
+
+tmp/
+src/

@@ -1,0 +1,9 @@
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html
+*.json
+*-lock.json
+*-lock.yaml
+dist/
+tmp/
