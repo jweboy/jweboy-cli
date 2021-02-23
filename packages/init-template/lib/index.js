@@ -9,8 +9,8 @@ const fs = require('fs').promises;
 const path = require('path');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
-const questions = require('../../prompt/template');
-const donwloadGithubFiles = require('../../utils/download-github-files');
+const questions = require('../../../prompt/template');
+const donwloadGithubFiles = require('../../../utils/download-github-files');
 
 module.exports = async function initTempalte() {
   const result = await inquirer.prompt(questions);

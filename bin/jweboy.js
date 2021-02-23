@@ -2,11 +2,9 @@
 
 const program = require('commander');
 // const convertImage = require('../packages/convert-image');
-const initTemplate = require('../packages/template');
-const deployStatic = require('../packages/deploy-static');
+const initTemplate = require('../packages/init-template/lib');
+const deployStatic = require('../packages/deploy-static/lib');
 const { version } = require('../package.json');
-
-// const deploy = require("../package/deploy");
 
 program
   .version(version, '-v, --version')

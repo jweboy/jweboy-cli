@@ -4,6 +4,7 @@
 *.log
 
 node_modules/
+_temp/
 
 packages/**/node_modules/
 

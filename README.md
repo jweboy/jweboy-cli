@@ -7,15 +7,14 @@
 ```js
 npm install -g jweboy-cli
 
-yarn add --global jweboy-cli
+yarn global  add jweboy-cli
 ```
 
 ## Future
 
 - `-i, --init` 新建项目模版，主要包括 [react+webpack模版](https://github.com/jweboy/react-webpack-toolkit)、[eslint+prettier模版](https://github.com/jweboy/project-starter)。
-- `-c, --convert` 转换 `SVG` 格式图片为 `PNG`、`JPG`、`JPEG` 等格式的图片。
 
-- `-d` `--deploy` 将打包后的静态文件拷贝到本地 nginx 文件中的 html 目录，并自动执行 Docker 镜像更新和容器重启，自动部署静态项目到服务器。(待更新)
+- `-d` `--deploy` 静态资源部署，主要通过 `ssh` 连接远程服务器，然后自动执行目录文件拷贝。
 
 ## Description
 
@@ -29,7 +28,8 @@ yarn add --global jweboy-cli
     "bootstrap": {
       "npmClientArgs": ["--no-package-lock"]
     }
-  }
+  }，
+  "npmClient": "yarn"
 }
 ```
 
@@ -42,4 +42,4 @@ $ lerna clean 删除所有 `package` 的依赖模块
 
 ## TODO
 
-- lerna 增加 workspace 配置
+- lerna 增加 workspace 配置(搭建个人 npm 仓库)
