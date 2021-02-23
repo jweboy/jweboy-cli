@@ -2,7 +2,7 @@
  * @Author: jweboy
  * @Date: 2019-12-03 16:18:35
  * @LastEditors: jweboy
- * @LastEditTime: 2019-12-04 10:43:56
+ * @LastEditTime: 2020-12-05 13:29:36
  */
 /**
  * @name 常规代码规则，
@@ -19,9 +19,11 @@ module.exports = {
   extends: [
     'eslint:recommended', // `eslint` 基准规则
     'airbnb-base', // `airbnb` 基准规则
-    'prettier',
+    'plugin:prettier/recommended',
   ],
+  parser: '@typescript-eslint/parser', // 解析器
   plugins: [
+    // 第三方插件
     'prettier',
   ],
   env: {
@@ -38,5 +40,17 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'], // 遵循 `.prettirc.js` 相关规则
     'no-console': 1,
-  }
+    'no-unused-vars': 0, // 未使用变量声明
+    'no-unused-expressions': 0,
+    'no-param-reassign': 0,
+    'no-use-before-define': 0, // 禁止定义前使用
+    'no-shadow': 0,
+    'no-underscore-dangle': 0, //
+    'import/prefer-default-export': 0,
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
+    'import/no-extraneous-dependencies': 0,
+    'no-restricted-syntax': 0,
+    camelcase: 0,
+  },
 };

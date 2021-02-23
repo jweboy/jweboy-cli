@@ -1,5 +1,3 @@
-.history/
-
 *.lock
 *.log
 
@@ -8,4 +6,5 @@ _temp/
 
 packages/**/node_modules/
 
-.env
+tmp/
+src/

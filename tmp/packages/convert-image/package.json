@@ -1,0 +1,11 @@
+{
+  "name": "convert-image",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "gm": "^1.23.1",
+    "inquirer": "^6.2.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    // "rootDir": "src",
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es5", "es6", "dom"],
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "removeComments": true,
+    "importHelpers": false,
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true, // 忽略 node_modules 中所有库的声明文件（ *.d.ts）的类型检查
+  },
+  "include": [
+    "src",
+    "packages"
+  ],
+  "exclude": [
+    "tmp"
+  ]
+}
