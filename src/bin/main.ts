@@ -3,8 +3,8 @@
 /*
  * @Author: jweboy
  * @Date: 2019-12-11 10:31:05
- * @LastEditors  : jweboy
- * @LastEditTime : 2020-01-06 18:21:05
+ * @LastEditors: jweboy
+ * @LastEditTime: 2021-05-07 23:40:09
  */
 
 import { program } from 'commander';
@@ -27,7 +27,7 @@ program
 
 program.parse(process.argv);
 
-// 单纯输入 web-cli 命令就输出脚手架的帮助信息
+// 不带任何参数就输出脚手架的帮助信息
 if (!program.args.length) program.help();
 
 process.on('unhandledRejection', (err) => {

@@ -1,8 +1,8 @@
 /*
  * @Author: jweboy
  * @Date: 2020-01-06 16:26:36
- * @LastEditors  : jweboy
- * @LastEditTime : 2020-01-06 18:26:41
+ * @LastEditors: jweboy
+ * @LastEditTime: 2021-05-08 00:17:16
  */
 const options = {
   cacheDirectory: true,
@@ -41,6 +41,11 @@ const options = {
       },
     ],
     require.resolve('@babel/preset-react'),
+    /**
+     * @description 编译文件中的 ts 声明包括 .ts .tsx 文件），具体配置点击以下链接查看
+     * @url https://www.babeljs.cn/docs/babel-preset-typescript
+     */
+    require.resolve('@babel/preset-typescript'),
   ],
 };
 

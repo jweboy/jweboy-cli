@@ -1,8 +1,8 @@
 /*
  * @Author: jweboy
  * @Date: 2019-12-19 16:43:09
- * @LastEditors  : jweboy
- * @LastEditTime : 2020-01-20 14:57:44
+ * @LastEditors: jweboy
+ * @LastEditTime: 2021-05-07 23:53:21
  */
 import webpack from 'webpack';
 import Config from 'webpack-chain';
@@ -43,7 +43,7 @@ const getWebpackConfig = () => {
   // module => babel
   config.module
     .rule('jsOrJSX')
-    .test(/\.js(x)?$/)
+    .test(/\.(js|jsx|ts|tsx)?$/)
     .include.add(paths.src)
     .end()
     .use('babel-loader')
